@@ -62,3 +62,20 @@ If anything feels off, or if you feel that some functionality is missing, please
 [extensions]: https://docs.github.com/en/github-cli/github-cli/creating-github-cli-extensions
 [examples]: ./example_gh_test.go
 [contributing]: ./.github/CONTRIBUTING.md
+go:build !windows
+// +build !windows
+
+package term
+
+import (
+	"errors"
+	"os"
+)
+
+func enableVirtualTerminalProcessing(f *os.File) error {
+	return errors.New("not implemented")
+}
+
+func openTTY() (*os.File, error) {
+	return os.Open("/dev/tty")
+}
